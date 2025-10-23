@@ -10,6 +10,17 @@ A simple and elegant authentication form built with **React + TypeScript + Ant D
 - 🧪 **MSW (Mock Service Worker)** for mocked backend
 - ⚡ Built with **Vite**
 
+## 🔐 Usage
+
+Enter the credentials:
+```
+Email: test@example.com
+Password: 12345678
+```
+
+You’ll be successfully "logged in" through the mocked API.<br>
+A **verification code** will be printed in the **browser console** for demo purposes.
+
 ## 📷 Demo
 
 ![UI](./assets/screenshot.png)
