@@ -15,7 +15,7 @@ A simple and elegant authentication form built with **React + TypeScript + Ant D
 ![UI](./assets/screenshot.png)
 
 Try this project online:  
-[![Open demo](https://img.shields.io/badge/Live%20Demo-Click%20Here-blue?style=for-the-badge)](login-form-vert-delta.vercel.app)
+[![Open demo](https://img.shields.io/badge/Live%20Demo-Click%20Here-blue?style=for-the-badge)](https://login-form-vert-delta.vercel.app)
 
 ## 📦 Tech Stack
 
