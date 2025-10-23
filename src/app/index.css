@@ -1,0 +1,28 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  background: var(--background-main);
+
+  --background-main: #F5F5F5;
+  --background-form: #fff;
+
+  height: 100vh;
+  width: 100%;
+}
+
+#root, main {
+  height: 100%;
+}
+
+.ant-input::placeholder,
+.ant-input-password input::placeholder {
+  font-size: 1rem;
+}
+
+.ant-form-item-explain-error {
+  margin: 0.25rem 0 1rem 0;
+}
