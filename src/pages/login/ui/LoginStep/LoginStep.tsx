@@ -1,10 +1,11 @@
-import {Button, Flex, Form, Input, message, Spin} from "antd";
+import {Button, Flex, Form, Input, Spin} from "antd";
 import styles from "./LoginStep.module.css";
 import {LockOutlined, UserOutlined} from "@ant-design/icons";
 import Title from "antd/es/typography/Title";
 import {useMutation} from "@tanstack/react-query";
 import {loginRequest} from "../../api/LoginStep/LoginStepAPI.ts";
 import type {LoginStepForm} from "../../model/LoginStep/LoginStepModel.ts";
+import {useErrorHandling} from "../../../../shared/model/useErrorHandling.ts";
 
 type Props = {
     onSuccess: () => void;
@@ -12,7 +13,7 @@ type Props = {
 
 export const LoginStep = ({onSuccess}: Props) => {
     const [form] = Form.useForm();
-    const [messageApi, contextHolder] = message.useMessage();
+    const {onError, contextHolder} = useErrorHandling();
 
     const {mutate, isPending} = useMutation({
         mutationFn: loginRequest,
@@ -20,12 +21,7 @@ export const LoginStep = ({onSuccess}: Props) => {
             console.log("FOR DEBUG:", data);
             onSuccess();
         },
-        onError: (err: Error) => {
-            messageApi.open({
-                type: "error",
-                content: err.message,
-            });
-        },
+        onError
     });
 
     const onFinish = (values: LoginStepForm) => {

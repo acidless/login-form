@@ -27,6 +27,11 @@
     padding: 0.5rem 0.75rem;
 }
 
+.login-success {
+    font-size: 1.5rem !important;
+    text-align: center;
+}
+
 @media screen and (max-width: 425px) {
     .login-form-container {
         padding: 1rem;
