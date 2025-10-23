@@ -1,73 +1,51 @@
-# React + TypeScript + Vite
+# 🧩 React Login Form - Mocked API Login Demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and elegant authentication form built with **React + TypeScript + Ant Design**, using **React Query** for API calls and **Mock Service Worker (MSW)** to simulate backend authorization.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ✅ **Login Form** built with Ant Design (`Form`, `Input`, `Button`)
+- 🔐 **Email + Password Validation**
+- 🔁 **React Query** for async API interaction
+- 🧪 **MSW (Mock Service Worker)** for mocked backend
+- ⚡ Built with **Vite**
 
-## React Compiler
+## 📷 Demo
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+![UI](./assets/screenshot.png)
 
-## Expanding the ESLint configuration
+Try this project online:  
+[![Open demo](https://img.shields.io/badge/Live%20Demo-Click%20Here-blue?style=for-the-badge)](login-form-vert-delta.vercel.app)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📦 Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+| Technology | Description |
+|-------------|-------------|
+| **React** | UI framework |
+| **Vite** | Fast development & build tool |
+| **Ant Design** | UI components |
+| **React Query** | Data fetching and caching |
+| **MSW (Mock Service Worker)** | API mocking |
+| **TypeScript** | Static typing |
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🧰 Installation & Setup
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/acidless/login-form.git
+cd login-form
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 2️⃣ Install dependencies
+```bash
+npm install
 ```
+
+### 3️⃣ Start the development server
+```bash
+npm run dev
+```
+
+## 📝 License
+
+This project is distributed under the MIT license.
