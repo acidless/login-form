@@ -1,15 +1,36 @@
-import {Button, Flex, Form, Input} from "antd";
+import {Button, Flex, Form, Input, message, Spin} from "antd";
 import styles from "./LoginStep.module.css";
-import type {FieldType} from "../../model/LoginPage.ts";
 import {LockOutlined, UserOutlined} from "@ant-design/icons";
 import Title from "antd/es/typography/Title";
+import {useMutation} from "@tanstack/react-query";
+import {loginRequest} from "../../api/LoginStep/LoginStepAPI.ts";
+import type {LoginStepForm} from "../../model/LoginStep/LoginStepModel.ts";
 
 type Props = {
-    onFinish: () => void;
+    onSuccess: () => void;
 }
 
-export const LoginStep = ({onFinish}: Props) => {
+export const LoginStep = ({onSuccess}: Props) => {
     const [form] = Form.useForm();
+    const [messageApi, contextHolder] = message.useMessage();
+
+    const {mutate, isPending} = useMutation({
+        mutationFn: loginRequest,
+        onSuccess: (data) => {
+            console.log("FOR DEBUG:", data);
+            onSuccess();
+        },
+        onError: (err: Error) => {
+            messageApi.open({
+                type: "error",
+                content: err.message,
+            });
+        },
+    });
+
+    const onFinish = (values: LoginStepForm) => {
+        mutate(values);
+    };
 
     return <Form
         form={form}
@@ -19,10 +40,11 @@ export const LoginStep = ({onFinish}: Props) => {
         onFinishFailed={() => {}}
         autoComplete="off"
     >
+        {contextHolder}
         <Flex className={styles.loginFormTitle}>
             <Title level={1}>Sign in to your account to continue</Title>
         </Flex>
-        <Form.Item<FieldType>
+        <Form.Item<LoginStepForm>
             className={styles.loginFormLine}
             name="email"
             rules={[{required: true, message: 'Please enter email!'},
@@ -32,7 +54,7 @@ export const LoginStep = ({onFinish}: Props) => {
             <Input prefix={<UserOutlined style={{color: "rgba(0,0,0,.45)"}}/>} size="large" placeholder="Email"/>
         </Form.Item>
 
-        <Form.Item<FieldType>
+        <Form.Item<LoginStepForm>
             className={styles.loginFormLine}
             name="password"
             rules={[{required: true, message: 'Please enter password!'},
@@ -62,5 +84,9 @@ export const LoginStep = ({onFinish}: Props) => {
                 );
             }}
         </Form.Item>
+
+        {isPending && <Flex justify="center" className="loader">
+            <Spin/>
+        </Flex>}
     </Form>;
 }

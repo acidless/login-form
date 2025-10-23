@@ -1,26 +1,65 @@
 import Title from "antd/es/typography/Title";
 import Text from "antd/es/typography/Text";
-import {Button, Flex, Form, Input, type InputRef} from "antd";
+import {Button, Flex, Form, Input, type InputRef, message, Spin} from "antd";
 import styles from "./CodeStep.module.css";
 import {useEffect, useRef, useState} from "react";
+import {useMutation} from "@tanstack/react-query";
+import {sendCodeRequest, updateCodeRequest} from "../../api/CodeStep/CodeStepAPI.ts";
 
 const CODE_LENGTH = 6;
+const CODE_EXPIRE_TIME = 5000;
 
-const CodeStep = () => {
+type Props = {
+    onSuccess: () => void;
+}
+
+const CodeStep = ({onSuccess}: Props) => {
     const inputsRef = useRef<InputRef[]>([]);
     const [currentCode, setCurrentCode] = useState("");
     const [isCodeExhausted, setCodeExhausted] = useState(false);
+    const [messageApi, contextHolder] = message.useMessage();
+
+    const {mutate: sendCode, isPending: isSendPending} = useMutation({
+        mutationFn: sendCodeRequest,
+        onSuccess: () => {
+            onSuccess();
+        },
+        onError: (err: Error) => {
+            messageApi.open({
+                type: "error",
+                content: err.message,
+            });
+        },
+    });
+
+    function onCodeUpdate() {
+        updateCode();
+    }
+
+    const {mutate: updateCode, isPending: isUpdatePending} = useMutation({
+        mutationFn: updateCodeRequest,
+        onSuccess: (data) => {
+            console.log("FOR DEBUG:", data);
+            setNewCode();
+        },
+        onError: (err: Error) => {
+            messageApi.open({
+                type: "error",
+                content: err.message,
+            });
+        },
+    });
 
     useEffect(() => {
         let timeout = null;
-        if(!isCodeExhausted) {
+        if (!isCodeExhausted) {
             timeout = setTimeout(() => {
                 setCodeExhausted(true);
-            }, 1000);
+            }, CODE_EXPIRE_TIME);
         }
 
-        return function() {
-            if(timeout) {
+        return function () {
+            if (timeout) {
                 clearTimeout(timeout);
             }
         }
@@ -51,7 +90,7 @@ const CodeStep = () => {
     }
 
     function handleSubmit() {
-        //const code = inputToString();
+        sendCode({code: currentCode});
     }
 
     return <Form
@@ -61,6 +100,7 @@ const CodeStep = () => {
         onFinishFailed={() => {}}
         autoComplete="off"
     >
+        {contextHolder}
         <Flex className={styles.codeStepInfo} justify="center" align="center" vertical={true}>
             <Title className={styles.codeStepTitle} level={1}>Two-Factor Authentication</Title>
             <Text className={styles.codeStepText}>Enter the 6-digit code from the Google Authenticator app</Text>
@@ -82,7 +122,7 @@ const CodeStep = () => {
                 ? <Form.Item shouldUpdate style={{marginBottom: 0}} label={null}>
                     <Button
                         className={styles.codeStepBtn}
-                        onClick={setNewCode}
+                        onClick={onCodeUpdate}
                         type="primary"
                         htmlType="button"
                         size="large">
@@ -104,6 +144,10 @@ const CodeStep = () => {
                 </Form.Item>
                 : <></>
         }
+
+        {(isSendPending || isUpdatePending) && <Flex justify="center" className="loader">
+            <Spin/>
+        </Flex>}
     </Form>;
 }
 
