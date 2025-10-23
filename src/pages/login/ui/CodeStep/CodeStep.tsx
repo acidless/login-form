@@ -1,13 +1,13 @@
 import Title from "antd/es/typography/Title";
 import Text from "antd/es/typography/Text";
-import {Button, Flex, Form, Input} from "antd";
+import {Button, Flex, Form, Input, type InputRef} from "antd";
 import styles from "./CodeStep.module.css";
 import {useEffect, useRef, useState} from "react";
 
 const CODE_LENGTH = 6;
 
 const CodeStep = () => {
-    const inputsRef = useRef<any[]>([]);
+    const inputsRef = useRef<InputRef[]>([]);
     const [currentCode, setCurrentCode] = useState("");
     const [isCodeExhausted, setCodeExhausted] = useState(false);
 
@@ -16,7 +16,7 @@ const CodeStep = () => {
         if(!isCodeExhausted) {
             timeout = setTimeout(() => {
                 setCodeExhausted(true);
-            }, 1000;
+            }, 1000);
         }
 
         return function() {
@@ -70,7 +70,7 @@ const CodeStep = () => {
                 <Input
                     key={i}
                     maxLength={1}
-                    ref={(el) => {inputsRef.current[i] = el}}
+                    ref={(el) => {inputsRef.current[i] = el!}}
                     onChange={(e) => handleChange(i, e)}
                     onKeyDown={(e) => handleKeyDown(i, e)}
                     className={styles.codeInput}
