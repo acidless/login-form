@@ -1,0 +1,16 @@
+.login-form-title {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.login-form-title h1 {
+    font-size: 1.55rem;
+}
+
+.login-form-line {
+    margin-bottom: 1rem;
+}
+
+.login-form-button {
+    width: 100%;
+}
