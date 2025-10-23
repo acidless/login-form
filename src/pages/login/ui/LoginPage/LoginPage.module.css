@@ -11,6 +11,7 @@
     width: 440px;
     border-radius: 0.5rem;
     padding: 2rem;
+    position: relative;
 }
 
 .login-form-logo {
@@ -19,4 +20,15 @@
     justify-content: center;
     padding: 1.25rem 0;
     margin-bottom: 0.25rem;
+}
+
+.login-back {
+    position: absolute;
+    padding: 0.5rem 0.75rem;
+}
+
+@media screen and (max-width: 425px) {
+    .login-form-container {
+        padding: 1rem;
+    }
 }

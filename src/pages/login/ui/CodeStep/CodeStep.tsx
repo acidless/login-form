@@ -31,7 +31,7 @@ const CodeStep = () => {
     }
 
     function inputToString() {
-        return inputsRef.current.map((el) => el?.input.value || "").join("");
+        return inputsRef.current.map((el) => el?.input?.value || "").join("");
     }
 
     function handleChange(index: number, e: React.ChangeEvent<HTMLInputElement>) {
@@ -51,7 +51,7 @@ const CodeStep = () => {
     }
 
     function handleSubmit() {
-        const code = inputToString();
+        //const code = inputToString();
     }
 
     return <Form
