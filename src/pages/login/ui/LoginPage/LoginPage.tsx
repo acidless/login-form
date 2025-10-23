@@ -22,7 +22,7 @@ export function LoginPage() {
             {currentStep === "code" &&
                 <ArrowLeftOutlined className={styles.loginBack} onClick={() => setCurrentStep("login")}/>}
             <Flex className={styles.loginFormLogo}>
-                <Image src="./public/logo.svg" alt="Company" preview={false}/>
+                <Image src="/logo.svg" alt="Company" preview={false}/>
             </Flex>
             {currentStep === "login" && <LoginStep onSuccess={onLoginSuccess}/>}
             {currentStep === "code" && <CodeStep onSuccess={onCodeSuccess}/>}
