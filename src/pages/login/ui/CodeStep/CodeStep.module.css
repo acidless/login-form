@@ -4,12 +4,14 @@
 }
 
 .code-step-title {
+    font-weight: 600;
     font-size: 1.55rem !important;
-    margin-bottom: 0.5rem !important;
+    margin-bottom: 0.25rem !important;
 }
 
 .code-step-text {
     font-size: 1rem;
+    font-weight: 400;
 }
 
 .code-step-inputs input {

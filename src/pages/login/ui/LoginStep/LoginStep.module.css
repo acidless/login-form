@@ -3,7 +3,7 @@
     margin-bottom: 1rem;
 }
 
-.login-form-title h1 {
+.login-form-title h2 {
     font-size: 1.55rem;
 }
 
@@ -13,4 +13,5 @@
 
 .login-form-button {
     width: 100%;
+    font-size: 1rem;
 }

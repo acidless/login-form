@@ -38,7 +38,7 @@ export const LoginStep = ({onSuccess}: Props) => {
     >
         {contextHolder}
         <Flex className={styles.loginFormTitle}>
-            <Title level={1}>Sign in to your account to continue</Title>
+            <Title level={2}>Sign in to your account to continue</Title>
         </Flex>
         <Form.Item<LoginStepForm>
             className={styles.loginFormLine}

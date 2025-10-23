@@ -9,7 +9,7 @@ import {useErrorHandling} from "../../../../shared/model/useErrorHandling.ts";
 import {CodeInputs} from "./CodeInputs.tsx";
 
 const CODE_LENGTH = 6;
-const CODE_EXPIRE_TIME = 10000;
+const CODE_EXPIRE_TIME = 60000;
 
 type Props = {
     onSuccess: () => void;
@@ -73,7 +73,7 @@ const CodeStep = ({onSuccess}: Props) => {
     >
         {contextHolder}
         <Flex className={styles.codeStepInfo} justify="center" align="center" vertical={true}>
-            <Title className={styles.codeStepTitle} level={1}>Two-Factor Authentication</Title>
+            <Title className={styles.codeStepTitle} level={2}>Two-Factor Authentication</Title>
             <Text className={styles.codeStepText}>Enter the 6-digit code from the Google Authenticator app</Text>
         </Flex>
         <CodeInputs codeSize={CODE_LENGTH} updateCode={setCurrentCode}/>
